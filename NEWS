@@ -1,0 +1,7 @@
+0.1
+
+First version
+
+0.1.1
+
+Fixed bug in snap read that meant it didn't work on snapshots with particles in multiple species lists.
