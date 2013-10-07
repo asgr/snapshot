@@ -38,7 +38,18 @@ ID=readBin(data,'integer',n=block/4)
 block=readBin(data,'integer',n=1)
 #4 data block = Masses
 block=readBin(data,'integer',n=1)
-if(length(block)>0){Mass=readBin(data,'numeric',n=block/4,size=4)}else{Mass=rep(NA,sum(Npart))}
+if(length(block)>0){
+    Mass=readBin(data,'numeric',n=block/4,size=4)
+}else{
+    counter=1
+    Mass=rep(NA,sum(Npart))
+    whichmass=which(Npart>0)
+        for(i in 1:length(whichmass)){
+            N=Npart[whichmass[i]]
+            Mass[ID>=counter & ID<=counter+N]=Massarr[whichmass[i]]
+            counter=counter+N
+        }
+}
 block=readBin(data,'integer',n=1)
 #Extra blocks
 extra=0
