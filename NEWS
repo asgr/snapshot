@@ -9,3 +9,7 @@ Fixed bug in snap read that meant it didn't work on snapshots with particles in 
 0.1.2
 
 Fixed issue that code wouldn't work with mass array being specified per particle. Now it will assign masses to particles based on the header mass information.
+
+2.0
+
+Lots of changes merging in Federico's format-2 functions. Not thoroughly checked yet (so not on CRAN) but the package is fully legal and documented. Now format-1 is suffixed ".1"" and format-2 is suffixed ".2".
