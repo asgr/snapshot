@@ -1,8 +1,14 @@
-snapwrite <-
-function(part,head,file){
+snap.write.head.2 <-
+function(head,file){
+cat("Writting Header in ",file,'\n')
 data = file(file,'wb')
+#first label block
+writeBin(as.integer(8),data,size=4)
+writeChar(as.character('HEAD'),data,eos=NULL)
+writeBin(as.integer(264),data,size=4)
+writeBin(as.integer(8),data,size=4)
 #first header block
-writeBin(as.integer(256),data)
+writeBin(as.integer(256),data,size=4)
 writeBin(as.integer(head$Npart),data)
 writeBin(as.numeric(head$Massarr),data,size=8)
 writeBin(as.numeric(head$Time),data,size=8)
@@ -22,25 +28,7 @@ writeBin(as.integer(head$NallHW),data)
 writeBin(as.integer(head$flag_entr_ics),data)
 writeBin(as.integer(rep(0,length=as.integer(256-241))),data)
 #last head block
-writeBin(as.integer(256),data)
+writeBin(as.integer(256),data,size=4,useBytes=TRUE)
 
-#1 data block = Positions
-writeBin(as.integer(sum(head$Npart)*3*4),data)
-posall=writeBin(as.numeric(t(part[,c('x','y','z')])),data,size=4)
-writeBin(as.integer(sum(head$Npart)*3*4),data)
-#2 data block = Velocities
-writeBin(as.integer(sum(head$Npart)*3*4),data)
-posall=writeBin(as.numeric(t(part[,c('vx','vy','vz')])),data,size=4)
-writeBin(as.integer(sum(head$Npart)*3*4),data)
-#3 data block = IDs
-writeBin(as.integer(sum(head$Npart)*4),data)
-writeBin(as.integer(part[,'ID']),data)
-writeBin(as.integer(sum(head$Npart)*4),data)
-#4 data block = Masses
-if('Mass' %in% colnames(part)){
-writeBin(as.integer(sum(head$Npart)*4),data)
-writeBin(as.numeric(part[,'Mass']),data,size=4)
-writeBin(as.integer(sum(head$Npart)*4),data)
-}
 close(data)
 }

@@ -1,4 +1,4 @@
-genparam<-
+snap.gen.param <-
 function(
 ParamFile=		'galaxy.param',
 ParamBase=		'./HernTest/',
@@ -75,7 +75,7 @@ addNFW=			FALSE){
 
 file.create(paste(ParamBase,'/',ParamFile,sep=''))
 
-params=names(formals(genparam))
+params=names(formals(snap.gen.param))
 if(addNFW==FALSE){params=params[1:67]}
 
 for(i in 3:length(params)){

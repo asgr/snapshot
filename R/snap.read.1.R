@@ -1,4 +1,4 @@
-snapread <-
+snap.read.1 <-
 function(file){
 data = file(file,'rb')
 #first header block

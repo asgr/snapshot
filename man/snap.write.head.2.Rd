@@ -1,36 +1,19 @@
-\name{snapread}
-\alias{snapread}
-
+\name{snap.write.head.2}
+\alias{snap.write.head.2}
+%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Read in Gadget snapshots
+%%  ~~function to do ... ~~
+Function to start creating a gadget format 2 snapshot file with a header
 }
 \description{
-This function allows the user to read in the standard format Gadget binaries. It keeps the particle information and header information in separate components of a list.
+%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Function to start creating a Gadget format 2 snapshot file from a given header. Writes the label block and the header. 
 }
 \usage{
-snapread(file)
+snap.write.head.2(head, file)
 }
-
+%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{file}{
-The full path to the Gadget snapshot to be read in.
-}
-}
-
-\value{
-  \item{part}{
-A data.frame containing the main particle level information. Columns included are:
-\tabular{ll}{
-ID \tab particle ID\cr
-x \tab x position in  units of Mpc\cr
-y \tab y position in  units of Mpc\cr
-z \tab z position in  units of Mpc\cr
-vx \tab x velocity\cr
-vy \tab y velocity\cr
-vz \tab z velocity\cr
-Mass \tab particle mass in units of Msun\cr
-}
-}
   \item{head}{
 A list containing various header information as list elements. These are:
 \tabular{ll}{
@@ -56,20 +39,29 @@ NallHW \tab Tell Gadget to use large integers for the respective particle types 
 flag_entr_ics \tab Entropy for gas on/off
 }
 }
+  \item{file}{
+The full path to the Gadget snapshot to be created.
+}
+}
+\details{
+%%  ~~ If necessary, more details than the description above ~~
+	Basically, it opens the file to be written. Writes the label blocks and then the header itself.
+}
+\note{
+	With this function one starts the process of writing a snapshot in Gadget format-2.
 }
 
 \author{
-Aaron Robotham
+%%  ~~who you are~~
+Federico Stasyszyn
 }
 
 \seealso{
-\code{\link{snapwrite}},\code{\link{addhead}},\code{\link{genparam}}
+\code{\link{snap.write.block.2}}, \code{\link{snap.add.head}}, \code{\link{snap.select.type.2}}, \code{\link{snap.read.2}}, \code{\link{snap.gen.param}}
 }
 
 \examples{
-\dontrun{
-temp=snapread('somepath/snapshot_XXX')
-}
+    #None yet!
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

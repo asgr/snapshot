@@ -1,14 +1,14 @@
-\name{genparam}
-\alias{genparam}
+\name{snap.gen.param}
+\alias{snap.gen.param}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Generates a Gadget paramter file
 }
 \description{
-Function to generator a legal Gadget paramter setup file. This has a sensible selection of defaults chosen for fairly small (non Cosmological) simulations.
+Function to generator a legal Gadget parameter setup file. This has a sensible selection of defaults chosen for fairly small (non Cosmological) simulations.
 }
 \usage{
-genparam(ParamFile = "galaxy.param", ParamBase = "./HernTest/",
+snap.gen.param(ParamFile = "galaxy.param", ParamBase = "./HernTest/",
 InitCondFile = "./HernStart.gdt", OutputDir = "./HernTest/", EnergyFile = "energy.txt",
 InfoFile = "info.txt", TimingsFile = "timings.txt", CpuFile = "cpu.txt",
 RestartFile = "restart", SnapshotFileBase = "snapshot",
@@ -253,7 +253,7 @@ Logic determining whether the analyic NFW specific paramters be added to the set
 }
 
 \value{
-No value returned, called for the side-effect of writing out a Gadget paramter setup file.
+No value returned, called for the side-effect of writing out a Gadget parameter setup file.
 }
 
 \author{
@@ -261,15 +261,14 @@ Aaron Robotham
 }
 
 \seealso{
-\code{\link{snapwrite}},\code{\link{snapread}},\code{\link{addhead}}
+\code{\link{snap.write.1}}, \code{\link{snap.read.1}}, \code{\link{snap.write.head.2}}, \code{\link{snap.write.block.2}}, \code{\link{snap.read.2}}
 }
 
 \examples{
 \dontrun{
-genparam('example.param','Demo/Example1/')
+snap.gen.param('example.param','Demo/Example1/')
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{gadget}
-

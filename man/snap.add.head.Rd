@@ -1,14 +1,14 @@
-\name{addhead}
-\alias{addhead}
+\name{snap.add.head}
+\alias{snap.add.head}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Add header information to particle data
 }
 \description{
-Function to add required header information to a Gadget read particle dataframe. This has sensible defaults for a small galaxy merger style simulation
+Function to add required header information to a Gadget format 1 particle data.frame. This has sensible defaults for a small galaxy merger style simulation
 }
 \usage{
-addhead(part, Npart = 2, Massarr = 0, Time = 0, z = 0, FlagSfr = 0,
+snap.add.head(part, Npart = 2, Massarr = 0, Time = 0, z = 0, FlagSfr = 0,
 FlagFeedback = 0, FlagCooling = 0, BoxSize = 0, OmegaM = 0, OmegaL = 0,
 h = 1, FlagAge = 0, FlagMetals = 0, NallHW = 0, flag_entr_ics = 0)
 }
@@ -123,12 +123,12 @@ Aaron Robotham
 }
 
 \seealso{
-\code{\link{snapwrite}},\code{\link{snapread}},\code{\link{genparam}}
+\code{\link{snap.write.1}}, \code{\link{snap.read.1}}, \code{\link{snap.write.block.2}},\code{\link{snap.read.2}}, \code{\link{snap.gen.param}}
 }
 
 \examples{
 \dontrun{
-tempadd=addhead(temp$part)
+tempadd=snap.add.head(temp$part)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

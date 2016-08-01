@@ -1,27 +1,33 @@
-\name{snapwrite}
-\alias{snapwrite}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\name{snap.read.1}
+\alias{snap.read.1}
+
 \title{
-Write in Gadget snapshots
+Read in a Gadget format 1 snapshot file
 }
 \description{
-This function allows the user to write standard format Gadget binaries. It can write the particle information and header information, which are provided as separate R objects.
+This function allows the user to read in format 1 Gadget binaries. It keeps the particle information and header information in separate components of a list.
 }
 \usage{
-snapwrite(part, head, file)
+snap.read.1(file)
 }
 
 \arguments{
+  \item{file}{
+The full path to the Gadget snapshot to be read in.
+}
+}
+
+\value{
   \item{part}{
-A data.frame containing the main particle level information. Columns required are:
+A data.frame containing the main particle level information. Columns included are:
 \tabular{ll}{
 ID \tab particle ID\cr
 x \tab x position in  units of Mpc\cr
 y \tab y position in  units of Mpc\cr
 z \tab z position in  units of Mpc\cr
-vx \tab x velocity in units of km/s\cr
-vy \tab y velocity in units of km/s\cr
-vz \tab z velocity in units of km/s\cr
+vx \tab x velocity\cr
+vy \tab y velocity\cr
+vz \tab z velocity\cr
 Mass \tab particle mass in units of Msun\cr
 }
 }
@@ -50,27 +56,22 @@ NallHW \tab Tell Gadget to use large integers for the respective particle types 
 flag_entr_ics \tab Entropy for gas on/off
 }
 }
-  \item{file}{
-The full path to the Gadget snapshot to be created.
 }
 
-}
-
-\value{
-No value returned, called for the side-effect of writing out a binary Gadget file.
-}
 \author{
 Aaron Robotham
 }
 
 \seealso{
-\code{\link{snapread}},\code{\link{addhead}},\code{\link{genparam}}
+\code{\link{snap.write.1}},\code{\link{snap.add.head}},\code{\link{snap.gen.param}}
 }
 
 \examples{
 \dontrun{
-temp=snapwrite(snap$part,snap$head,'somepath/snapshot_XXX')
+temp=snapread('somepath/snapshot_XXX')
 }
 }
+% Add one or more standard keywords, see file 'KEYWORDS' in the
+% R documentation directory.
 \keyword{gadget}
 \keyword{snapshot}
