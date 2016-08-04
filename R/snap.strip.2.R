@@ -1,4 +1,4 @@
-snap.strip.1=function(snap,type=6){
+snap.strip.2=function(snap,type=6){
 allN=which(snap$head$Nall>0)
 if(all(type %in% allN)==FALSE){stop(cat('Some particle types are missing in snapshot data! Only types',allN,'exist.\n'))}
 Ntypes=length(snap$head$Nall)

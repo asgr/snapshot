@@ -55,7 +55,7 @@ Returns the DATA block from the file.
 }
 \author{
 %%  ~~who you are~~
-Federico Stasyszyn
+Federico Stasyszyn & Aaron Robotham
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

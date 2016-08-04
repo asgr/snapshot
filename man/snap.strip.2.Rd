@@ -1,14 +1,14 @@
-\name{snap.strip.1}
-\alias{snap.strip.1}
+\name{snap.strip.2}
+\alias{snap.strip.2}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Strip out particles from a Gadget format 1 snapshot.
+Strip out particles from a Gadget format 2 snapshot.
 }
 \description{
 A convenience function to strip out different particle types and arrange as separate list elements.
 }
 \usage{
-snap.strip.1(snap, type=6)
+snap.strip.2(snap, type=6)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,11 +24,11 @@ Vector; the particle types to strip out into separate lists.
 A list of particles data.frames as requested, named paste("T",type,sep='').
 }
 \author{
-Aaron Robotham
+Federico Stasyszyn
 }
 
 \seealso{
-\code{\link{snap.write.1}}, \code{\link{snap.read.1}}, \code{\link{snap.add.head}}, \code{\link{snap.gen.param}}
+\code{\link{snap.write.block.2}}, \link{snap.write.head.2}}, \code{\link{snap.read.2}}, \code{\link{snap.add.head}}, \code{\link{snap.gen.param}}
 }
 \examples{
     #None yet!

@@ -24,7 +24,7 @@ snap.select.type.2(what)
 }
 \author{
 %%  ~~who you are~~
-Federico Stasyszyn
+Federico Stasyszyn & Aaron Robotham
 }
 
 \seealso{
