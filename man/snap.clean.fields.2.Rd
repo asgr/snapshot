@@ -24,7 +24,7 @@ Federico Stasyszyn
 }
 
 \seealso{
-\code{\link{snap.write.block.2}}, \code{\link{snap.add.head}}, \code{\link{snap.write.head.2}}, \code{\link{snap.select.type.2}}, \code{\link{snap.gen.param}}
+\code{\link{snap.write.block.2}}, \code{\link{snap.add.head.1}}, \code{\link{snap.write.head.2}}, \code{\link{snap.select.type.2}}, \code{\link{snap.gen.param}}
 }
 \examples{
     #None yet!

@@ -1,5 +1,5 @@
-\name{snap.add.head}
-\alias{snap.add.head}
+\name{snap.add.head.1}
+\alias{snap.add.head.1}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Add header information to particle data
@@ -8,7 +8,7 @@ Add header information to particle data
 Function to add required header information to a Gadget format 1 particle data.frame. This has sensible defaults for a small galaxy merger style simulation
 }
 \usage{
-snap.add.head(part, Npart = 2, Massarr = 0, Time = 0, z = 0, FlagSfr = 0,
+snap.add.head.1(part, Npart = 2, Massarr = 0, Time = 0, z = 0, FlagSfr = 0,
 FlagFeedback = 0, FlagCooling = 0, BoxSize = 0, OmegaM = 0, OmegaL = 0,
 h = 1, FlagAge = 0, FlagMetals = 0, NallHW = 0, flag_entr_ics = 0)
 }
@@ -128,7 +128,7 @@ Aaron Robotham
 
 \examples{
 \dontrun{
-tempadd=snap.add.head(temp$part)
+tempadd=snap.add.head.1(temp$part)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

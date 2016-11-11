@@ -1,4 +1,4 @@
-snap.read.2 = function(file,what,ndim,type,debug,gas){
+snap.read.2 = function(file, what, ndim, type, debug, gas, thin=1){
     if(missing(what)) what="HEAD"
     what=gsub("^\\s+|\\s+$", "", what)
     if(missing(debug)) debug=0
@@ -60,9 +60,9 @@ snap.read.2 = function(file,what,ndim,type,debug,gas){
     	cat("Reading LABEL= ", label, " of ",block,'\n')
     	skip=readBin(data,integer(),n=1)
     	if(what==label){
-    		blo=readBin(data,type,n=skip/4,size=4)
+    		blo=.readBinThin(data,type,n=skip/4,size=4,thin=thin,ndim=ndim)
     	}else{
-    		seek(data,origin='current',where=block-8)
+    		seek(data,where=block-8,origin='current')
     	}
     	skip=readBin(data,integer(),n=1) #this ends the block
     	if((block - skip - 8) != 0) print("Something wrong!")

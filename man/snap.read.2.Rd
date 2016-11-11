@@ -11,7 +11,7 @@ This function opens the file and reads the header (also checks that the blocks a
 Then goes trought the full file, checking the blocks. If the block label matches it returns that block.
 }
 \usage{
-snap.read.2(file, what, ndim, type, debug, gas)
+snap.read.2(file, what, ndim, type, debug, gas, thin=1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -39,6 +39,9 @@ snap.read.2(file, what, ndim, type, debug, gas)
 %%     ~~Describe \code{gas} here~~
 	OPTIONAL: read only gas files.
 }
+  \item{thin}{
+How much should the particle data be thinned? \option{thin}=1 means all data is read in, \option{thin}=10 means every 10th particle is read in. Larger numbers will create more sub-sampled data, and will hugely increase the read-in speed and reduce the memory required. This is useful for making images where only a small fraction of Gadget particles are required.  
+}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -61,7 +64,7 @@ Federico Stasyszyn & Aaron Robotham
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{snap.write.block.2}}, \code{\link{snap.add.head}}, \code{\link{snap.write.head.2}}, \code{\link{snap.select.type.2}}, \code{\link{snap.gen.param}}
+\code{\link{snap.write.block.2}}, \code{\link{snap.add.head.1}}, \code{\link{snap.write.head.2}}, \code{\link{snap.select.type.2}}, \code{\link{snap.gen.param}}
 }
 \examples{
     #None yet!

@@ -1,5 +1,9 @@
 snap.write.1 <-
 function(part,head,file){
+if(missing(head) & !missing(part)){
+    head=part$head
+    part=part$part
+}
 data = file(file,'wb')
 #first header block
 writeBin(as.integer(256),data)

@@ -8,12 +8,15 @@ Read in a Gadget format 1 snapshot file
 This function allows the user to read in format 1 Gadget binaries. It keeps the particle information and header information in separate components of a list.
 }
 \usage{
-snap.read.1(file)
+snap.read.1(file, thin=1)
 }
 
 \arguments{
   \item{file}{
 The full path to the Gadget snapshot to be read in.
+}
+  \item{thin}{
+How much should the particle data be thinned? \option{thin}=1 means all data is read in, \option{thin}=10 means every 10th particle is read in. Larger numbers will create more sub-sampled data, and will hugely increase the read-in speed and reduce the memory required. This is useful for making images where only a small fraction of Gadget particles are required.  
 }
 }
 
@@ -63,7 +66,7 @@ Aaron Robotham
 }
 
 \seealso{
-\code{\link{snap.write.1}},\code{\link{snap.add.head}},\code{\link{snap.gen.param}}
+\code{\link{snap.write.1}},\code{\link{snap.add.head.1}},\code{\link{snap.gen.param}}
 }
 
 \examples{

@@ -1,5 +1,23 @@
-snap.read.1 <-
-function(file){
+.readBinThin=function(con, what, n=1L, size= NA_integer_, signed = TRUE, endian = .Platform$endian, thin=1, ndim=1){
+    if(thin==1){
+    out=readBin(con=con,what,n=n,size=size,signed=signed,endian=endian)
+}else{
+    count=1
+    limit=floor(n/(ndim*thin))*ndim
+    out=rep(NA,limit)
+    while(count<=limit){
+        out[count:(count+ndim-1)]=readBin(con,what,n=ndim,size=size,signed=signed,endian=endian)
+        count=count+ndim
+        if(count<=limit){
+            seek(con, where=(thin-1)*size*ndim, origin='current')
+        }
+    }
+    seek(con, where=(n-((limit-ndim)*thin)-ndim)*size, origin='current')
+}
+    return=out
+}
+
+snap.read.1=function(file, thin=1){
 data = file(file,'rb')
 #first header block
 block=readBin(data,'integer',n=1)
@@ -26,20 +44,21 @@ block=readBin(data,'integer',n=1)
 
 #1 data block = Positions
 block=readBin(data,'integer',n=1)
-posall=readBin(data,'numeric',n=block/4,size=4)
+posall=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=3)
 block=readBin(data,'integer',n=1)
 #2 data block = Velocities
 block=readBin(data,'integer',n=1)
-velall=readBin(data,'numeric',n=block/4,size=4)
+print(block/4)
+velall=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=3)
 block=readBin(data,'integer',n=1)
 #3 data block = IDs
 block=readBin(data,'integer',n=1)
-ID=readBin(data,'integer',n=block/4)
+ID=.readBinThin(data,'integer',n=block/4,size=4,thin=thin,ndim=1)
 block=readBin(data,'integer',n=1)
 #4 data block = Masses
 block=readBin(data,'integer',n=1)
 if(length(block)>0){
-    Mass=readBin(data,'numeric',n=block/4,size=4)
+    Mass=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=1)
 }else{
     counter=1
     Mass=rep(NA,sum(Npart))
@@ -57,7 +76,7 @@ extramat={}
 while(length(block)>0){
 block=readBin(data,'integer',n=1)
 	if(length(block)>0){
-		extramat=cbind(extramat,readBin(data,'numeric',n=block/4,size=4))
+		extramat=cbind(extramat,.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=1))
 		block=readBin(data,'integer',n=1)
 		extra=extra+1
 	}
@@ -65,7 +84,7 @@ block=readBin(data,'integer',n=1)
 
 close(data)
 
-extract=((1:sum(Npart))*3)-2
+extract=((1:floor(sum(Npart)/thin))*3)-2
 part=data.frame(ID=ID,x=posall[extract],y=posall[extract+1],z=posall[extract+2],vx=velall[extract],vy=velall[extract+1],vz=velall[extract+2],Mass=Mass)
 
 return(list(part=part,head=list(Npart = Npart, Massarr= Massarr, Time= Time, z= z, FlagSfr= FlagSfr, FlagFeedback= FlagFeedback, Nall= Nall, FlagCooling= FlagCooling, NumFiles= NumFiles, BoxSize= BoxSize, OmegaM= OmegaM, OmegaL= OmegaL,h=h, FlagAge= FlagAge, FlagMetals= FlagMetals, NallHW= NallHW,flag_entr_ics=flag_entr_ics),extra=extra,extramat=extramat))}

@@ -64,7 +64,7 @@ Aaron Robotham
 }
 
 \seealso{
-\code{\link{snap.read.1}}, \code{\link{snap.add.head}}, \code{\link{snap.gen.param}}
+\code{\link{snap.read.1}}, \code{\link{snap.add.head.1}}, \code{\link{snap.gen.param}}
 }
 
 \examples{

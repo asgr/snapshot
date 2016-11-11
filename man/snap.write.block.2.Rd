@@ -49,7 +49,7 @@ Note that you need already a file with a header. You can generate it with \code{
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{snap.read.2}}, \code{\link{snap.add.head}}, \code{\link{snap.write.head.2}}, \code{\link{snap.gen.param}}
+\code{\link{snap.read.2}}, \code{\link{snap.add.head.1}}, \code{\link{snap.write.head.2}}, \code{\link{snap.gen.param}}
 }
 \examples{
     #None yet!
