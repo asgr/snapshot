@@ -44,19 +44,22 @@ block=readBin(data,'integer',n=1)
 
 #1 data block = Positions
 block=readBin(data,'integer',n=1)
+print(block)
 posall=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=3)
 block=readBin(data,'integer',n=1)
 #2 data block = Velocities
 block=readBin(data,'integer',n=1)
-print(block/4)
+print(block)
 velall=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=3)
 block=readBin(data,'integer',n=1)
 #3 data block = IDs
 block=readBin(data,'integer',n=1)
+print(block)
 ID=.readBinThin(data,'integer',n=block/4,size=4,thin=thin,ndim=1)
 block=readBin(data,'integer',n=1)
 #4 data block = Masses
 block=readBin(data,'integer',n=1)
+print(block)
 if(length(block)>0){
     Mass=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=1)
 }else{
@@ -75,6 +78,7 @@ extra=0
 extramat={}
 while(length(block)>0){
 block=readBin(data,'integer',n=1)
+print(block)
 	if(length(block)>0){
 		extramat=cbind(extramat,.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=1))
 		block=readBin(data,'integer',n=1)
