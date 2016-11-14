@@ -20,6 +20,7 @@
 snap.read.1=function(file, thin=1, verbose=FALSE){
 data = file(file,'rb')
 #first header block
+if(verbose){cat('Reading header blocks.\n',sep=' ')}
 block=readBin(data,'integer',n=1)
 Npart=readBin(data,'integer',n=6)
 Massarr=readBin(data,'numeric',n=6,size=8)

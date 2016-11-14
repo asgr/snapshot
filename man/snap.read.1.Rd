@@ -8,7 +8,7 @@ Read in a Gadget format 1 snapshot file
 This function allows the user to read in format 1 Gadget binaries. It keeps the particle information and header information in separate components of a list.
 }
 \usage{
-snap.read.1(file, thin=1)
+snap.read.1(file, thin=1, verbose=FALSE)
 }
 
 \arguments{
@@ -16,10 +16,15 @@ snap.read.1(file, thin=1)
 The full path to the Gadget snapshot to be read in.
 }
   \item{thin}{
-How much should the particle data be thinned? \option{thin}=1 means all data is read in, \option{thin}=10 means every 10th particle is read in. Larger numbers will create more sub-sampled data, and will hugely increase the read-in speed and reduce the memory required. This is useful for making images where only a small fraction of Gadget particles are required.  
+Scalar. How much should the particle data be thinned? \option{thin}=1 means all data is read in, \option{thin}=10 means every 10th particle is read in. Larger numbers will create more sub-sampled data, and will hugely increase the read-in speed and reduce the memory required. This is useful for making images where only a small fraction of Gadget particles are required.  
+}
+  \item{verbose}{
+Logical. If TRUE then function will print out the current reading processes. If FALSE the read is silent.  
 }
 }
-
+\details{
+When using thinning you will generally only see a speed-up in reading times when the multiple is quite large (over 500), assuming the initial full snapshot (\option{thin}=1) can be fully read into RAM. This is because of the extra overheads involved in stop-starting the scanning and reading when thinning. If the initial snapshot cannot be read into RAM then the speed up will be much larger and witnessed with much smaller multiples (basically whatever allows the data to be comfortably read into RAM).
+}
 \value{
   \item{part}{
 A data.frame containing the main particle level information. Columns included are:
