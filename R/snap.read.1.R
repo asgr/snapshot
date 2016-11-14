@@ -17,7 +17,7 @@
     return=out
 }
 
-snap.read.1=function(file, thin=1){
+snap.read.1=function(file, thin=1, verbose=FALSE){
 data = file(file,'rb')
 #first header block
 block=readBin(data,'integer',n=1)
@@ -44,22 +44,27 @@ block=readBin(data,'integer',n=1)
 
 #1 data block = Positions
 block=readBin(data,'integer',n=1)
-print(block)
+if(verbose){cat('Reading in',floor(block/4/3/thin),'positions from',block/4,'particles over 3 dimensions.\n',sep=' ')}
 posall=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=3)
 block=readBin(data,'integer',n=1)
+
 #2 data block = Velocities
 block=readBin(data,'integer',n=1)
-print(block)
+if(verbose){cat('Reading in',floor(block/4/3/thin),'velocities from',block/4,'particles over 3 dimensions.\n',sep=' ')}
 velall=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=3)
 block=readBin(data,'integer',n=1)
+
 #3 data block = IDs
 block=readBin(data,'integer',n=1)
-print(block)
+Npart=block/4
+if(verbose){cat('Reading in',floor(block/4/thin),'IDs from',block/4,'particles over 1 dimension.\n',sep=' ')}
 ID=.readBinThin(data,'integer',n=block/4,size=4,thin=thin,ndim=1)
 block=readBin(data,'integer',n=1)
+
 #4 data block = Masses
 block=readBin(data,'integer',n=1)
-print(block)
+if(verbose){cat('Reading in',floor(block/4/thin),'masses from',block/4,'particles over 1 dimension.\n',sep=' ')}
+
 if(length(block)>0){
     Mass=.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=1)
 }else{
@@ -78,9 +83,10 @@ extra=0
 extramat={}
 while(length(block)>0){
 block=readBin(data,'integer',n=1)
-print(block)
 	if(length(block)>0){
-		extramat=cbind(extramat,.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=1))
+	    Ndim=block/(Npart*4)
+        if(verbose){cat('Reading in',floor(block/4/(Ndim)/thin),'extra properties from',block/4,'particles over',Ndim,'dimension/s.\n',sep=' ')}
+		extramat=cbind(extramat,.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=block/(Npart*4)))
 		block=readBin(data,'integer',n=1)
 		extra=extra+1
 	}
