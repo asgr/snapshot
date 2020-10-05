@@ -57,7 +57,7 @@ block=readBin(data,'integer',n=1)
 
 #3 data block = IDs
 block=readBin(data,'integer',n=1)
-Npart=block/4
+#Npart=block/4
 if(verbose){cat('Reading in',floor(block/4/thin),'IDs from',block/4,'particles over 1 dimension.\n',sep=' ')}
 ID=.readBinThin(data,'integer',n=block/4,size=4,thin=thin,ndim=1)
 block=readBin(data,'integer',n=1)
@@ -87,7 +87,7 @@ block=readBin(data,'integer',n=1)
 	if(length(block)>0){
 	    Ndim=block/(Npart*4)
         if(verbose){cat('Reading in',floor(block/4/(Ndim)/thin),'extra properties from',block/4,'particles over',Ndim,'dimension/s.\n',sep=' ')}
-		extramat=cbind(extramat,.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=block/(Npart*4)))
+		extramat=cbind(extramat,.readBinThin(data,'numeric',n=block/4,size=4,thin=thin,ndim=block/sum(Npart)/4))
 		block=readBin(data,'integer',n=1)
 		extra=extra+1
 	}

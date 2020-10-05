@@ -12,8 +12,8 @@ Functions for reading and writing Gadget N-body format 1 and 2 snapshots. The Ga
 \tabular{ll}{
 Package: \tab snapshot\cr
 Type: \tab Package\cr
-Version: \tab 2.0\cr
-Date: \tab 2016-08-01\cr
+Version: \tab 2.0.1\cr
+Date: \tab 2020-10-05\cr
 License: \tab GPL-3 \cr
 }
 
